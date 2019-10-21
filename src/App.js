@@ -6,16 +6,21 @@ import Portfolio from "./components/Portfolio";
 import Testimonials from "./components/Testimonials";
 import ContactUs from "./components/ContactUs";
 import Footer from "./components/Footer";
-import Config from "./components/Config";
+import Config from "./components/Config/Config";
 // import resumeData from "./resumeData";
 import firebaseService from "./services/FirebaseService";
 class App extends Component {
-  state = { data: [] };
+  state = { data: [], config: false };
 
   componentDidMount() {
     firebaseService.getData("resumeData", dataReceived =>
       this.setState({ data: dataReceived })
     );
+
+    let splitUrl = window.location.href.split("config");
+    splitUrl.length > 1
+      ? (this.state.config = true)
+      : (this.state.config = false);
     // salvando o objeto resumeData no firebase
     //  firebaseService.pushData('resumeData', resumeData);
   }
@@ -23,14 +28,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Config resumeData={this.state.data} />
-        <Header resumeData={this.state.data} />
-        <About resumeData={this.state.data} />
-        <Resume resumeData={this.state.data} />
-        <Portfolio resumeData={this.state.data} />
-        <Testimonials resumeData={this.state.data} />
-        <ContactUs resumeData={this.state.data} />
-        <Footer resumeData={this.state.data} />
+        {this.state.config ? (
+          <Config resumeData={this.state.data} />
+        ) : (
+          <div>
+            <Header resumeData={this.state.data} />
+            <About resumeData={this.state.data} />
+            <Resume resumeData={this.state.data} />
+            <Portfolio resumeData={this.state.data} />
+            <Testimonials resumeData={this.state.data} />
+            <ContactUs resumeData={this.state.data} />
+            <Footer resumeData={this.state.data} />
+          </div>
+        )}
       </div>
     );
   }

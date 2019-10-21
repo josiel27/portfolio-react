@@ -1,0 +1,12 @@
+.config{
+    background: aliceblue;
+}
+textarea, input{
+    width: 100%;
+    height: fit-content;
+}
+
+textarea{
+    min-height: 130px;
+
+}
