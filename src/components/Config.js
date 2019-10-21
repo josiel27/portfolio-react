@@ -2,18 +2,14 @@ import React from "react";
 import "./Config.css";
 const Config = props => {
   console.log(props.resumeData);
+
   // Get the modal
   var modal = document.getElementById("myModal");
 
-  //   // Get the button that opens the modal
-  //   var btn = document.getElementById("myBtn");
-
-  //   // Get the <span> element that closes the modal
-  //   var span = document.getElementsByClassName("close")[0];
-
   // When the user clicks the button, open the modal
   let btnClick = function() {
-    modal.style.display = "block";
+    let pss = prompt("Digite a senha para configurar o portfólio");
+    pss == "123" ? (modal.style.display = "block") : alert("Password invalido");
   };
 
   // When the user clicks on <span> (x), close the modal
@@ -23,7 +19,7 @@ const Config = props => {
 
   // When the user clicks anywhere outside of the modal, close it
   window.click = function(event) {
-    if (event.target == modal) {
+    if (event.target === modal) {
       modal.style.display = "none";
     }
   };
@@ -36,26 +32,36 @@ const Config = props => {
         Open Modal
       </button>
 
-      <div id="myModal" class="modal">
-        <div class="modal-content">
-          <div class="modal-header">
-            <span class="close" onClick={spanClick}>
+      <div id="myModal" className="modal">
+        <div className="modal-content">
+          <div className="modal-header">
+            <span className="close" onClick={spanClick}>
               &times;
             </span>
             <h2>Modal Header</h2>
           </div>
-          <div class="modal-body">
-          {/* <label>{props.resumeData['name']}</label> */}
-            {Object.values(props.resumeData).map((obj, i) => {
-              return (
-                <>
-                  <label>{obj}</label>
-                  {/* <input type="text" value={props.resumeData.obj}>{props.resumeData.obj}</input> */}
-                </>
-              );
-            })}
+          <div className="modal-body">
+            <form>
+              <label>aboutme</label>
+              <input type="text" value={props.aboutme}></input>
+              <label>address</label>
+              <label>education (2)</label>
+              <label>imagebaseurl</label>
+              <label>linkedinId</label>
+              <label>name</label>
+              <label>portfolio (4)</label>
+              <label>role</label>
+              <label>roleDescription</label>
+              <label>skills (3)</label>
+              <label>skillsDescription</label>
+              <label>skypeid</label>
+              <label>socialLinks (3) </label>
+              <label>testimonials (2)</label>
+              <label>website</label>
+              <label>work (2)</label>
+            </form>
           </div>
-          <div class="modal-footer">
+          <div className="modal-footer">
             <h3>Modal Footer</h3>
           </div>
         </div>
